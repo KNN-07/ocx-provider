@@ -120,6 +120,3 @@ Push to GitHub and connect to Vercel. Config is in `vercel.json`.
 
 Push to GitHub and connect to Netlify. Config is in `netlify.toml`.
 
-## License
-
-MIT
