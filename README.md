@@ -1,36 +1,17 @@
 # OCX Provider Registry
 
-Proxied AI model providers for OpenCode. Includes Claude, Google Gemini, and GPT models via your local proxy server.
+[![Registry](https://img.shields.io/badge/registry-live-brightgreen)](https://ocx-provider-registry.knn07.workers.dev)
+[![GitHub](https://img.shields.io/github/license/KNN-07/ocx-provider)](https://github.com/KNN-07/ocx-provider)
 
-## Quick Start
+Proxied AI model providers for [OpenCode](https://opencode.ai). Access Claude, Google Gemini, and GPT models through your local proxy server.
 
-```bash
-# Install dependencies
-bun install
-
-# Build the registry
-bun run build
-
-# Local development
-bun run dev
-```
-
-## Components
-
-| Component | Description |
-|-----------|-------------|
-| `norman-proxy/claude-proxy` | Claude models (Opus 4.5, Sonnet 4.5 with thinking) |
-| `norman-proxy/google-proxy` | Google Gemini models (3 Pro, 3 Flash, 2.5 variants) |
-| `norman-proxy/gpt-proxy` | OpenAI GPT models (5.x series with reasoning) |
-| `norman-proxy/all-providers` | Bundle: All providers above |
+**Registry URL:** https://ocx-provider-registry.knn07.workers.dev
 
 ## Installation
 
-After deploying, users can add your registry:
-
 ```bash
-# Add the registry
-ocx registry add https://your-registry.workers.dev --name norman-proxy
+# Add the registry (one-time)
+ocx registry add https://ocx-provider-registry.knn07.workers.dev --name norman-proxy
 
 # Install all providers
 ocx add norman-proxy/all-providers
@@ -41,46 +22,93 @@ ocx add norman-proxy/google-proxy
 ocx add norman-proxy/gpt-proxy
 ```
 
-## Required Environment Variables
+## Components
 
-Users need to set these before using the proxied models:
+| Component | Description |
+|-----------|-------------|
+| `norman-proxy/claude-proxy` | Claude Opus 4.5, Sonnet 4.5 (with thinking variants) |
+| `norman-proxy/google-proxy` | Google Gemini 3 Pro, 3 Flash, 2.5 variants |
+| `norman-proxy/gpt-proxy` | OpenAI GPT 5.x series with reasoning |
+| `norman-proxy/all-providers` | Bundle: All providers above |
+
+## Configuration
+
+### Required Environment Variables
+
+Set these before using the proxied models:
 
 ```bash
 export PROXY_API_KEY="your_api_key"
 export PROXY_BASE_URL="http://localhost:8317"
 ```
 
+### Set Default Model
+
+In your `opencode.jsonc`:
+
+```jsonc
+{
+  "model": "cliproxy/claude-sonnet-4-5-thinking"
+}
+```
+
 ## Available Models
 
 ### Claude (cliproxy)
-- `cliproxy/claude-opus-4-5-thinking`
-- `cliproxy/claude-sonnet-4-5`
-- `cliproxy/claude-sonnet-4-5-thinking`
+
+| Model | Description |
+|-------|-------------|
+| `cliproxy/claude-opus-4-5-thinking` | Claude Opus 4.5 with extended thinking (200K context) |
+| `cliproxy/claude-sonnet-4-5` | Claude Sonnet 4.5 (200K context) |
+| `cliproxy/claude-sonnet-4-5-thinking` | Claude Sonnet 4.5 with extended thinking (200K context) |
 
 ### Google Gemini (cliproxygoogle)
-- `cliproxygoogle/gemini-3-pro-preview`
-- `cliproxygoogle/gemini-3-pro-image-preview`
-- `cliproxygoogle/gemini-3-flash-preview`
-- `cliproxygoogle/gemini-2.5-flash`
-- `cliproxygoogle/gemini-2.5-flash-lite`
-- `cliproxygoogle/gemini-2.5-computer-use-preview-10-2025`
+
+| Model | Description |
+|-------|-------------|
+| `cliproxygoogle/gemini-3-pro-preview` | Gemini 3 Pro Preview with reasoning (1M context) |
+| `cliproxygoogle/gemini-3-pro-image-preview` | Gemini 3 Pro Image Preview (1M context) |
+| `cliproxygoogle/gemini-3-flash-preview` | Gemini 3 Flash Preview (1M context) |
+| `cliproxygoogle/gemini-2.5-flash` | Gemini 2.5 Flash (1M context) |
+| `cliproxygoogle/gemini-2.5-flash-lite` | Gemini 2.5 Flash Lite (1M context) |
+| `cliproxygoogle/gemini-2.5-computer-use-preview-10-2025` | Gemini 2.5 Computer Use (1M context) |
 
 ### GPT (cliproxygpt)
-- `cliproxygpt/gpt-5.2`
-- `cliproxygpt/gpt-5.2-codex`
-- `cliproxygpt/gpt-5.1`
-- `cliproxygpt/gpt-5.1-codex`
-- `cliproxygpt/gpt-5.1-codex-max`
-- `cliproxygpt/gpt-5.1-codex-mini`
-- `cliproxygpt/gpt-5`
-- `cliproxygpt/gpt-5-codex`
-- `cliproxygpt/gpt-5-codex-mini`
 
-## Deploy
+| Model | Description |
+|-------|-------------|
+| `cliproxygpt/gpt-5.2` | GPT 5.2 with medium reasoning (400K context) |
+| `cliproxygpt/gpt-5.2-codex` | GPT 5.2 Codex with medium reasoning (400K context) |
+| `cliproxygpt/gpt-5.1` | GPT 5.1 with medium reasoning (400K context) |
+| `cliproxygpt/gpt-5.1-codex` | GPT 5.1 Codex with medium reasoning (400K context) |
+| `cliproxygpt/gpt-5.1-codex-max` | GPT 5.1 Codex with high effort reasoning (400K context) |
+| `cliproxygpt/gpt-5.1-codex-mini` | GPT 5.1 Codex with low effort reasoning (400K context) |
+| `cliproxygpt/gpt-5` | GPT 5 with medium reasoning (400K context) |
+| `cliproxygpt/gpt-5-codex` | GPT 5 Codex with medium reasoning (400K context) |
+| `cliproxygpt/gpt-5-codex-mini` | GPT 5 Codex with low effort reasoning (400K context) |
+
+## Development
+
+```bash
+# Install dependencies
+bun install
+
+# Build the registry
+bun run build
+
+# Local development server
+bun run dev
+
+# Deploy to Cloudflare Workers
+bun run deploy
+```
+
+## Self-Hosting
 
 ### Cloudflare Workers (Recommended)
 
 ```bash
+npx wrangler login
 bun run deploy
 ```
 

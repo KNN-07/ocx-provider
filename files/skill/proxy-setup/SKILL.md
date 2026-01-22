@@ -1,47 +1,60 @@
 # Proxy Provider Setup
 
-This component configures proxied AI model endpoints for OpenCode.
+This component configures proxied AI model endpoints for OpenCode via your local proxy server.
+
+## Quick Start
+
+1. Set the required environment variables
+2. Select a model from the available providers
+3. Start coding with OpenCode
 
 ## Required Environment Variables
 
-Set these environment variables before using the proxied models:
-
 ```bash
 export PROXY_API_KEY="your_api_key_here"
-export PROXY_BASE_URL="http://localhost:8317"  # Your proxy server URL
+export PROXY_BASE_URL="http://localhost:8317"
 ```
 
 ## Available Models
 
-After installation, you can use these models in OpenCode:
-
 ### Claude (via cliproxy)
-- `cliproxy/claude-opus-4-5-thinking` - Claude Opus 4.5 with extended thinking
-- `cliproxy/claude-sonnet-4-5` - Claude Sonnet 4.5
-- `cliproxy/claude-sonnet-4-5-thinking` - Claude Sonnet 4.5 with extended thinking
+
+| Model | Features |
+|-------|----------|
+| `cliproxy/claude-opus-4-5-thinking` | Extended thinking, 200K context, 64K output |
+| `cliproxy/claude-sonnet-4-5` | Fast, 200K context, 64K output |
+| `cliproxy/claude-sonnet-4-5-thinking` | Extended thinking, 200K context, 64K output |
 
 ### Google Gemini (via cliproxygoogle)
-- `cliproxygoogle/gemini-3-pro-preview` - Gemini 3 Pro Preview (reasoning)
-- `cliproxygoogle/gemini-3-pro-image-preview` - Gemini 3 Pro Image Preview
-- `cliproxygoogle/gemini-3-flash-preview` - Gemini 3 Flash Preview
-- `cliproxygoogle/gemini-2.5-flash` - Gemini 2.5 Flash
-- `cliproxygoogle/gemini-2.5-flash-lite` - Gemini 2.5 Flash Lite
-- `cliproxygoogle/gemini-2.5-computer-use-preview-10-2025` - Gemini 2.5 Computer Use
+
+| Model | Features |
+|-------|----------|
+| `cliproxygoogle/gemini-3-pro-preview` | Reasoning, 1M context |
+| `cliproxygoogle/gemini-3-pro-image-preview` | Image support, 1M context |
+| `cliproxygoogle/gemini-3-flash-preview` | Fast, 1M context |
+| `cliproxygoogle/gemini-2.5-flash` | Balanced, 1M context |
+| `cliproxygoogle/gemini-2.5-flash-lite` | Lightweight, 1M context |
+| `cliproxygoogle/gemini-2.5-computer-use-preview-10-2025` | Computer use, 1M context |
 
 ### GPT (via cliproxygpt)
-- `cliproxygpt/gpt-5.2` - GPT 5.2 (reasoning)
-- `cliproxygpt/gpt-5.2-codex` - GPT 5.2 Codex (reasoning)
-- `cliproxygpt/gpt-5.1` - GPT 5.1 (reasoning)
-- `cliproxygpt/gpt-5.1-codex` - GPT 5.1 Codex (reasoning)
-- `cliproxygpt/gpt-5.1-codex-max` - GPT 5.1 Codex Max (high effort reasoning)
-- `cliproxygpt/gpt-5.1-codex-mini` - GPT 5.1 Codex Mini (low effort reasoning)
-- `cliproxygpt/gpt-5` - GPT 5 (reasoning)
-- `cliproxygpt/gpt-5-codex` - GPT 5 Codex (reasoning)
-- `cliproxygpt/gpt-5-codex-mini` - GPT 5 Codex Mini (low effort reasoning)
+
+| Model | Features |
+|-------|----------|
+| `cliproxygpt/gpt-5.2` | Medium reasoning, 400K context |
+| `cliproxygpt/gpt-5.2-codex` | Code-optimized, medium reasoning, 400K context |
+| `cliproxygpt/gpt-5.1` | Medium reasoning, 400K context |
+| `cliproxygpt/gpt-5.1-codex` | Code-optimized, medium reasoning, 400K context |
+| `cliproxygpt/gpt-5.1-codex-max` | High effort reasoning, 400K context |
+| `cliproxygpt/gpt-5.1-codex-mini` | Low effort reasoning, 400K context |
+| `cliproxygpt/gpt-5` | Medium reasoning, 400K context |
+| `cliproxygpt/gpt-5-codex` | Code-optimized, medium reasoning, 400K context |
+| `cliproxygpt/gpt-5-codex-mini` | Low effort reasoning, 400K context |
 
 ## Usage
 
-Set your default model in `opencode.jsonc`:
+### Set Default Model
+
+In your `opencode.jsonc`:
 
 ```jsonc
 {
@@ -49,4 +62,17 @@ Set your default model in `opencode.jsonc`:
 }
 ```
 
-Or switch models during a session using the model picker.
+### Switch Models
+
+Use the model picker in OpenCode (usually `Ctrl+M` or via command palette) to switch between models during a session.
+
+## Model Selection Guide
+
+| Use Case | Recommended Model |
+|----------|-------------------|
+| Complex reasoning tasks | `cliproxy/claude-opus-4-5-thinking` |
+| General coding | `cliproxy/claude-sonnet-4-5-thinking` |
+| Large codebase analysis | `cliproxygoogle/gemini-3-pro-preview` (1M context) |
+| Quick tasks | `cliproxygoogle/gemini-3-flash-preview` |
+| Code generation | `cliproxygpt/gpt-5.1-codex` |
+| Deep analysis | `cliproxygpt/gpt-5.1-codex-max` |
