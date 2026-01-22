@@ -112,11 +112,3 @@ npx wrangler login
 bun run deploy
 ```
 
-### Vercel
-
-Push to GitHub and connect to Vercel. Config is in `vercel.json`.
-
-### Netlify
-
-Push to GitHub and connect to Netlify. Config is in `netlify.toml`.
-
