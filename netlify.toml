@@ -1,0 +1,9 @@
+[build]
+  command = "bunx ocx build . --out dist"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS"

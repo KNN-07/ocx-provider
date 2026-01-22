@@ -1,0 +1,363 @@
+{
+	// OCX Provider Registry
+	// Proxied endpoints for Claude, Google, and GPT models
+	//
+	// Usage: ocx add norman-proxy/claude-proxy
+	// Or:    ocx add norman-proxy/all-providers
+
+	"$schema": "https://ocx.kdco.dev/schemas/registry.json",
+	"name": "Norman's Proxy Providers",
+	"namespace": "norman-proxy",
+	"version": "0.0.1",
+	"author": "Norman",
+
+	"opencode": "1.0.0",
+	"ocx": "1.0.16",
+
+	"components": [
+		// =============================================================================
+		// INDIVIDUAL PROVIDERS
+		// =============================================================================
+
+		{
+			"name": "claude-proxy",
+			"type": "ocx:skill",
+			"description": "Proxied Claude models (Opus 4.5, Sonnet 4.5, with thinking variants)",
+			"files": ["skill/proxy-setup/SKILL.md"],
+			"opencode": {
+				"provider": {
+					"cliproxy": {
+						"name": "Proxy API (Claude)",
+						"npm": "@ai-sdk/anthropic",
+						"options": {
+							"apiKey": "${PROXY_API_KEY}",
+							"baseURL": "${PROXY_BASE_URL}/v1",
+							"timeout": 600000
+						},
+						"models": {
+							"claude-opus-4-5-thinking": {
+								"name": "Claude Opus 4.5 Thinking",
+								"limit": {
+									"context": 200000,
+									"output": 64000
+								},
+								"reasoning": true,
+								"options": {
+									"thinking": {
+										"type": "enabled",
+										"budgetTokens": 32000
+									}
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"claude-sonnet-4-5": {
+								"name": "Claude Sonnet 4.5",
+								"limit": {
+									"context": 200000,
+									"output": 64000
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"claude-sonnet-4-5-thinking": {
+								"name": "Claude Sonnet 4.5 Thinking",
+								"limit": {
+									"context": 200000,
+									"output": 64000
+								},
+								"reasoning": true,
+								"options": {
+									"thinking": {
+										"type": "enabled",
+										"budgetTokens": 32000
+									}
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+		{
+			"name": "google-proxy",
+			"type": "ocx:skill",
+			"description": "Proxied Google Gemini models (3 Pro, 3 Flash, 2.5 variants)",
+			"files": ["skill/proxy-setup/SKILL.md"],
+			"opencode": {
+				"provider": {
+					"cliproxygoogle": {
+						"name": "Proxy API (Google)",
+						"npm": "@ai-sdk/google",
+						"options": {
+							"apiKey": "${PROXY_API_KEY}",
+							"baseURL": "${PROXY_BASE_URL}/v1beta",
+							"timeout": 600000
+						},
+						"models": {
+							"gemini-3-pro-preview": {
+								"name": "Gemini 3 Pro Preview",
+								"reasoning": true,
+								"limit": {
+									"context": 1048576,
+									"output": 65536
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gemini-3-pro-image-preview": {
+								"name": "Gemini 3 Pro Image Preview",
+								"limit": {
+									"context": 1048576,
+									"output": 65536
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gemini-3-flash-preview": {
+								"name": "Gemini 3 Flash Preview",
+								"limit": {
+									"context": 1048576,
+									"output": 65536
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gemini-2.5-flash": {
+								"name": "Gemini 2.5 Flash",
+								"limit": {
+									"context": 1048576,
+									"output": 65536
+								}
+							},
+							"gemini-2.5-flash-lite": {
+								"name": "Gemini 2.5 Flash Lite",
+								"limit": {
+									"context": 1048576,
+									"output": 65536
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gemini-2.5-computer-use-preview-10-2025": {
+								"name": "Gemini 2.5 Computer Use Preview",
+								"limit": {
+									"context": 1048576,
+									"output": 65536
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+		{
+			"name": "gpt-proxy",
+			"type": "ocx:skill",
+			"description": "Proxied OpenAI GPT models (GPT-5.x series with reasoning)",
+			"files": ["skill/proxy-setup/SKILL.md"],
+			"opencode": {
+				"provider": {
+					"cliproxygpt": {
+						"name": "Proxy API (GPT)",
+						"npm": "@ai-sdk/openai-compatible",
+						"options": {
+							"apiKey": "${PROXY_API_KEY}",
+							"baseURL": "${PROXY_BASE_URL}/v1",
+							"timeout": 600000
+						},
+						"models": {
+							"gpt-5.2": {
+								"name": "GPT 5.2",
+								"limit": {
+									"context": 400000,
+									"output": 32768
+								},
+								"reasoning": true,
+								"options": {
+									"reasoning": {
+										"effort": "medium"
+									}
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gpt-5.2-codex": {
+								"name": "GPT 5.2 Codex",
+								"limit": {
+									"context": 400000,
+									"output": 32768
+								},
+								"reasoning": true,
+								"options": {
+									"reasoning": {
+										"effort": "medium"
+									}
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gpt-5.1": {
+								"name": "GPT 5.1",
+								"limit": {
+									"context": 400000,
+									"output": 32768
+								},
+								"reasoning": true,
+								"options": {
+									"reasoning": {
+										"effort": "medium"
+									}
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gpt-5.1-codex": {
+								"name": "GPT 5.1 Codex",
+								"limit": {
+									"context": 400000,
+									"output": 32768
+								},
+								"reasoning": true,
+								"options": {
+									"reasoning": {
+										"effort": "medium"
+									}
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gpt-5.1-codex-max": {
+								"name": "GPT 5.1 Codex Max",
+								"limit": {
+									"context": 400000,
+									"output": 32768
+								},
+								"reasoning": true,
+								"options": {
+									"reasoning": {
+										"effort": "high"
+									}
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gpt-5.1-codex-mini": {
+								"name": "GPT 5.1 Codex Mini",
+								"limit": {
+									"context": 400000,
+									"output": 32768
+								},
+								"reasoning": true,
+								"options": {
+									"reasoning": {
+										"effort": "low"
+									}
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gpt-5": {
+								"name": "GPT 5",
+								"limit": {
+									"context": 400000,
+									"output": 32768
+								},
+								"reasoning": true,
+								"options": {
+									"reasoning": {
+										"effort": "medium"
+									}
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gpt-5-codex": {
+								"name": "GPT 5 Codex",
+								"limit": {
+									"context": 400000,
+									"output": 32768
+								},
+								"reasoning": true,
+								"options": {
+									"reasoning": {
+										"effort": "medium"
+									}
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							},
+							"gpt-5-codex-mini": {
+								"name": "GPT 5 Codex Mini",
+								"limit": {
+									"context": 400000,
+									"output": 32768
+								},
+								"reasoning": true,
+								"options": {
+									"reasoning": {
+										"effort": "low"
+									}
+								},
+								"modalities": {
+									"input": ["text", "image"],
+									"output": ["text"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+		// =============================================================================
+		// BUNDLE - ALL PROVIDERS
+		// =============================================================================
+
+		{
+			"name": "all-providers",
+			"type": "ocx:bundle",
+			"description": "All proxied providers: Claude, Google Gemini, and GPT models",
+			"files": [],
+			"dependencies": ["claude-proxy", "google-proxy", "gpt-proxy"]
+		}
+	]
+}
