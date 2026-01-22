@@ -26,7 +26,7 @@
 			"files": [],
 			"opencode": {
 				"provider": {
-					"cliproxy": {
+					"cliproxyanthropic": {
 						"name": "Proxy API (Claude)",
 						"npm": "@ai-sdk/anthropic",
 						"options": {
@@ -180,7 +180,7 @@
 			"files": [],
 			"opencode": {
 				"provider": {
-					"cliproxygpt": {
+					"cliproxyopenai": {
 						"name": "Proxy API (GPT)",
 						"npm": "@ai-sdk/openai-compatible",
 						"options": {

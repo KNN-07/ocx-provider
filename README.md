@@ -48,19 +48,19 @@ In your `opencode.jsonc`:
 
 ```jsonc
 {
-  "model": "cliproxy/claude-sonnet-4-5-thinking"
+  "model": "cliproxyanthropic/claude-sonnet-4-5-thinking"
 }
 ```
 
 ## Available Models
 
-### Claude (cliproxy)
+### Claude (cliproxyanthropic)
 
 | Model | Description |
 |-------|-------------|
-| `cliproxy/claude-opus-4-5-thinking` | Claude Opus 4.5 with extended thinking (200K context) |
-| `cliproxy/claude-sonnet-4-5` | Claude Sonnet 4.5 (200K context) |
-| `cliproxy/claude-sonnet-4-5-thinking` | Claude Sonnet 4.5 with extended thinking (200K context) |
+| `cliproxyanthropic/claude-opus-4-5-thinking` | Claude Opus 4.5 with extended thinking (200K context) |
+| `cliproxyanthropic/claude-sonnet-4-5` | Claude Sonnet 4.5 (200K context) |
+| `cliproxyanthropic/claude-sonnet-4-5-thinking` | Claude Sonnet 4.5 with extended thinking (200K context) |
 
 ### Google Gemini (cliproxygoogle)
 
@@ -73,19 +73,19 @@ In your `opencode.jsonc`:
 | `cliproxygoogle/gemini-2.5-flash-lite` | Gemini 2.5 Flash Lite (1M context) |
 | `cliproxygoogle/gemini-2.5-computer-use-preview-10-2025` | Gemini 2.5 Computer Use (1M context) |
 
-### GPT (cliproxygpt)
+### GPT (cliproxyopenai)
 
 | Model | Description |
 |-------|-------------|
-| `cliproxygpt/gpt-5.2` | GPT 5.2 with medium reasoning (400K context) |
-| `cliproxygpt/gpt-5.2-codex` | GPT 5.2 Codex with medium reasoning (400K context) |
-| `cliproxygpt/gpt-5.1` | GPT 5.1 with medium reasoning (400K context) |
-| `cliproxygpt/gpt-5.1-codex` | GPT 5.1 Codex with medium reasoning (400K context) |
-| `cliproxygpt/gpt-5.1-codex-max` | GPT 5.1 Codex with high effort reasoning (400K context) |
-| `cliproxygpt/gpt-5.1-codex-mini` | GPT 5.1 Codex with low effort reasoning (400K context) |
-| `cliproxygpt/gpt-5` | GPT 5 with medium reasoning (400K context) |
-| `cliproxygpt/gpt-5-codex` | GPT 5 Codex with medium reasoning (400K context) |
-| `cliproxygpt/gpt-5-codex-mini` | GPT 5 Codex with low effort reasoning (400K context) |
+| `cliproxyopenai/gpt-5.2` | GPT 5.2 with medium reasoning (400K context) |
+| `cliproxyopenai/gpt-5.2-codex` | GPT 5.2 Codex with medium reasoning (400K context) |
+| `cliproxyopenai/gpt-5.1` | GPT 5.1 with medium reasoning (400K context) |
+| `cliproxyopenai/gpt-5.1-codex` | GPT 5.1 Codex with medium reasoning (400K context) |
+| `cliproxyopenai/gpt-5.1-codex-max` | GPT 5.1 Codex with high effort reasoning (400K context) |
+| `cliproxyopenai/gpt-5.1-codex-mini` | GPT 5.1 Codex with low effort reasoning (400K context) |
+| `cliproxyopenai/gpt-5` | GPT 5 with medium reasoning (400K context) |
+| `cliproxyopenai/gpt-5-codex` | GPT 5 Codex with medium reasoning (400K context) |
+| `cliproxyopenai/gpt-5-codex-mini` | GPT 5 Codex with low effort reasoning (400K context) |
 
 ## Development
 
