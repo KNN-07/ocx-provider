@@ -23,7 +23,7 @@
 			"name": "claude-proxy",
 			"type": "ocx:bundle",
 			"description": "Proxied Claude models (Opus 4.5, Sonnet 4.5, with thinking variants)",
-			"files": ["skill/proxy-setup/SKILL.md"],
+			"files": [],
 			"opencode": {
 				"provider": {
 					"cliproxy": {
@@ -92,7 +92,7 @@
 			"name": "google-proxy",
 			"type": "ocx:bundle",
 			"description": "Proxied Google Gemini models (3 Pro, 3 Flash, 2.5 variants)",
-			"files": ["skill/proxy-setup/SKILL.md"],
+			"files": [],
 			"opencode": {
 				"provider": {
 					"cliproxygoogle": {
@@ -177,7 +177,7 @@
 			"name": "gpt-proxy",
 			"type": "ocx:bundle",
 			"description": "Proxied OpenAI GPT models (GPT-5.x series with reasoning)",
-			"files": ["skill/proxy-setup/SKILL.md"],
+			"files": [],
 			"opencode": {
 				"provider": {
 					"cliproxygpt": {
